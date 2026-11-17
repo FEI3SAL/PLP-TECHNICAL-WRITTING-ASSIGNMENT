@@ -1,0 +1,154 @@
+FEISAL ABDIKADIR MOHOMED TECHNICAL WRITING PRACTICAL ASSIGNMENT
+A) USER MANUAL PROCEDURE
+TITLE: HOW I CREATED AND ACTIVATED A PYTHON VIRTUAL ENVIRONMENT AND INSTALLED A PACKAGE
+1. Introduction
+In this practical exercise, I created a Python virtual environment and installed a Python package using Command Prompt on my Windows laptop.
+A virtual environment helps programmers manage packages for different projects without interfering with other Python projects. In this exercise, I used the Requests package to demonstrate successful package installation.
+2. Prerequisites
+Before I started the practical work, I made sure I had the following:
+1.	A laptop running Windows 10 or Windows 11.
+2.	Python installed on my laptop.
+3.	Command Prompt.
+4.	An active internet connection.
+5.	Basic knowledge of using a computer.
+3. Procedure
+Step 1: Opening Command Prompt
+I pressed the Windows key, typed cmd in the search bar, and opened Command Prompt.
+Expected Result: The Command Prompt window opened successfully.
+Step 2: Checking Python Installation
+I typed py --version and pressed Enter.
+Expected Result: The Python version installed on my laptop appeared on the screen.
+Step 3: Creating a Project Folder
+I typed mkdir MyPythonProject and pressed Enter.
+Expected Result: A new folder named MyPythonProject was created.
+Step 4: Opening the Project Folder
+I typed cd MyPythonProject and pressed Enter.
+Expected Result: I successfully entered the MyPythonProject directory.
+Step 5: Creating a Virtual Environment
+I typed py -m venv venv and pressed Enter.
+Expected Result: The virtual environment was created successfully inside my project folder.
+Step 6: Activating the Virtual Environment
+I typed venv\Scripts\activate and pressed Enter.
+Expected Result: The (venv) indicator appeared at the beginning of the command line, showing that the environment was active.
+Step 7: Installing a Python Package
+I typed pip install requests and pressed Enter.
+Expected Result: The Requests package was downloaded and installed successfully.
+Step 8: Checking the Installed Package
+I typed pip show requests and pressed Enter.
+Expected Result: Information about the Requests package, including its version and installation location, appeared on the screen.
+Step 9: Deactivating the Virtual Environment
+I typed deactivate and pressed Enter.
+Expected Result: The (venv) indicator disappeared, confirming that the virtual environment was deactivated.
+4. Screenshot Description
+During the practical exercise, I would capture a screenshot of my Command Prompt after installing the Requests package.
+The screenshot should show:
+•	The name of my project folder.
+•	The activated virtual environment (venv).
+•	The command used to install the Requests package.
+•	The successful installation message.
+This screenshot would provide evidence of the practical work I completed.
+5. Troubleshooting
+Problem: Python is not recognized as a command.
+While performing this task, a beginner may encounter an error where the computer fails to recognize Python.
+Cause: Python may not be installed correctly or may not have been added to the system PATH.
+Solution:
+1.	Download Python from its official website.
+2.	Open the downloaded installer.
+3.	Select the "Add Python to PATH" option.
+4.	Complete the installation.
+5.	Restart Command Prompt.
+6.	Type py --version to check whether Python is working.
+6. Conclusion
+Through this practical exercise, I learned how to create and activate a Python virtual environment and install a package using Command Prompt. I also learned how to verify package installation and deactivate the environment after completing the task.
+This exercise improved my understanding of Python project management and gave me practical experience in using command-line instructions.
+
+
+B) API REFERENCE ENTRY
+TITLE: API DOCUMENTATION FOR CREATING A NEW TASK IN A PROJECT MANAGEMENT APPLICATION
+1. Introduction
+In this exercise, I designed an API endpoint that allows an authenticated user to create a new task in a project management application.
+The API enables users to add tasks to specific projects by providing a task title, description, assignee, due date and priority level.
+The endpoint uses the HTTP POST method to send task information to the server and stores the new task in the system.
+2. HTTP Method and Endpoint
+HTTP Method: POST
+Endpoint Path:
+/api/v1/projects/{project_id}/tasks
+Description:
+This endpoint allows an authenticated user to create a new task within an existing project. After submitting valid task information, the system creates the task and returns its details.
+3. Request Parameters
+The endpoint uses the following parameters:
+A. Path Parameters
+Parameter	Data Type	Requirement	Description
+project_id	Integer	Required	Identifies the project where the task will be created.
+B. Query Parameters
+There are no query parameters required for this endpoint.
+C. Request Body Parameters
+Parameter	Data Type	Requirement	Description
+title	String	Required	The name or title of the task.
+description	String	Optional	Provides additional information about the task.
+assignee_id	Integer	Required	Identifies the user assigned to complete the task.
+due_date	String (Date)	Required	Specifies the task deadline in YYYY-MM-DD format.
+priority	String	Required	Defines the task priority as low, medium or high.
+4. Required Request Headers
+The following HTTP headers must be included when sending a request.
+Header	Value	Description
+Authorization	Bearer Token	Used to authenticate the user.
+Content-Type	application/json	Indicates that the request body contains JSON data.
+Accept	application/json	Specifies that the client expects a JSON response.
+5. Example Request Body (JSON)
+The following is an example of the information submitted when creating a new task.
+{
+  "title": "Prepare Project Report",
+  "description": "Complete and submit the monthly project progress report.",
+  "assignee_id": 105,
+  "due_date": "2026-12-15",
+  "priority": "high"
+}
+Explanation:
+•	Title: Identifies the task.
+•	Description: Explains what needs to be done.
+•	Assignee ID: Identifies the person responsible for the task.
+•	Due Date: Shows when the task should be completed.
+•	Priority: Indicates the importance of the task.
+6. Successful Response
+HTTP Status Code: 201 Created
+When the request is successful, the server creates the task and returns its information.
+Example response:
+{
+  "success": true,
+  "message": "Task created successfully.",
+  "data": {
+    "id": 501,
+    "project_id": 12,
+    "title": "Prepare Project Report",
+    "description": "Complete and submit the monthly project progress report.",
+    "assignee_id": 105,
+    "due_date": "2026-12-15",
+    "priority": "high",
+    "status": "pending",
+    "created_at": "2026-11-16T18:30:00Z"
+  }
+}
+7. HTTP Response Codes
+The endpoint may return the following HTTP status codes depending on the result of the request.
+Status Code	Response	Explanation
+201	Created	The task has been created successfully.
+400	Bad Request	The request contains invalid information or missing required fields.
+401	Unauthorized	The user has not provided valid authentication credentials.
+403	Forbidden	The authenticated user does not have permission to create tasks in the project.
+404	Not Found	The specified project or assigned user does not exist.
+409	Conflict	The request conflicts with an existing resource or project restriction.
+415	Unsupported Media Type	The request does not use the supported JSON content type.
+422	Unprocessable Entity	The submitted information fails validation, such as an invalid priority level or date.
+500	Internal Server Error	An unexpected server error prevents the task from being created.
+8. Example Request
+The following example demonstrates how a client can send a request to create a new task.
+POST /api/v1/projects/12/tasks HTTP/1.1
+Host: example.com
+Authorization: Bearer YOUR_ACCESS_TOKEN
+Content-Type: application/json
+Accept: application/json
+The JSON request body is then included with the task information.
+9. Conclusion
+Through this exercise, I designed an API reference entry for creating tasks in a project management application. I learned how to document HTTP methods, endpoint paths, request parameters, authentication headers, response codes and JSON data structures.
+This practical exercise helped me understand how APIs allow different software applications to communicate and exchange information in a structured manner.
